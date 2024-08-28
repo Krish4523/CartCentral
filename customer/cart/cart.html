@@ -1,0 +1,51 @@
+<link href="{{css}}" rel="stylesheet"/>
+<div class="container-fluid cart-products">
+	{% if len(products) != 0 %} {% for cart,product in products %}
+	<div class="card container-fluid m-3 p-1" data-product-id="{{ product.pid }}">
+		<div class="row">
+			<div class="col-4 col-sm-3">
+				<img class="img-fluid rounded-start m-1" data-product-id="{{ product.pid }}" onclick="productPage(this)"
+						 src="{{ url_for('serve_image', filename=product.primaryimg) }}"/>
+			</div>
+			<div class="col-8 col-sm-9">
+				<div class="card-body">
+					<div onclick="productPage(this)">
+						<h5 class="card-title">{{ product.title }}</h5>
+						<p class="product-description card-text" style="font-size: 0.75rem">
+							{{ product.disciption }}
+						</p>
+						<p class="card-text">
+							<strong style="font-size: 1.25rem">&#x20B9;{{product.price}}</strong>
+						</p>
+					</div>
+					<div class="card-text row d-flex justify-content-around align-items-center"></div>
+				</div>
+				<div class="cart-footer">
+					<div class="cart-item">
+						<button class="cardButtons btn bg-transparent m-1" type="button">
+							-
+						</button>
+						<span class="btn bg-transparent m-1" id="qnt1" type="button">{{cart.quantity}}</span>
+						<button class="cardButtons btn bg-transparent m-1" type="button">
+							+
+						</button>
+					</div>
+					<button class="cart-btn btn m-1" data-product-id="{{product.pid}}" onclick="removeFromCart(this)"
+									type="button">Remove
+					</button>
+					<button class="cart-btn btn m-1" data-product-id="{{product.pid}}" onclick="buyNow(this)"
+									type="button">Buy
+						now
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %} {% else %}
+	<div class="text-center d-flex justify-content-center align-content-center">
+		<h1 class="fs-1">
+			No Products added to Cart
+		</h1>
+	</div>
+	{% endif %}
+</div>

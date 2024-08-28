@@ -1,0 +1,20 @@
+.catButton,
+.ops {
+    background: var(--hover) !important;
+    color: white !important;
+}
+
+.sub {
+    background: var(--btn) !important;
+    color: white !important;
+    border-radius: 10px;
+}
+
+.accordion-item {
+    border: 2px solid var(--border) !important;
+}
+
+.imgButton {
+    width: 20px;
+    height: 20px;
+}

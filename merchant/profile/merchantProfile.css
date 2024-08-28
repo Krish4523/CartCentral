@@ -1,0 +1,54 @@
+:root {
+    --bg: #e3fdfd;
+    --border: #91c8e4;
+    --btn: #749bc2;
+    --hover: #4682a9;
+    --text: #71c9ce;
+}
+
+.input-field {
+    border: none;
+    background: transparent !important;
+    border-bottom: 2px solid var(--border) !important;
+    transition: all 200ms ease-in-out;
+}
+
+.input-field:focus {
+    color: #585454 !important;
+    border: 2px solid var(--border);
+    outline: none;
+    box-shadow: none;
+    background-color: rgba(116, 155, 194, 0.2);
+}
+
+.save-btn {
+    width: 10rem;
+    background-color: var(--btn) !important;
+}
+
+.save-btn:hover {
+    background-color: var(--hover) !important;
+}
+
+.container {
+    background-color: var(--bg);
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    max-width: 768px;
+}
+
+.edit-btn {
+    background-color: transparent;
+    color: var(--btn);
+    border: 2px solid var(--btn);
+    border-radius: 0.2rem;
+}
+
+.edit-btn:hover {
+    background-color: var(--btn);
+    color: #FFFF;
+}
+
+#phoneNo::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

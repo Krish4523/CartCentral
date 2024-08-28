@@ -1,0 +1,28 @@
+@media (max-width: 576px) {
+    .product-description {
+        display: none;
+    }
+}
+
+:root {
+    --bg: #e3fdfd;
+    --border: #91c8e4;
+    --btn: #749bc2;
+    --hover: #4682a9;
+    --text: #71c9ce;
+}
+
+body {
+    background: var(--bg);
+}
+
+.buttons-p {
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.buttons-p:hover {
+    background: var(--border);
+    color: #FFFFFF;
+}
+

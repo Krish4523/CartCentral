@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8"/>
+    <meta
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+    />
+
+    <link
+            crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            rel="stylesheet"
+    />
+
+    <link href="{{css}}" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="container-fluid d-flex flex-column flex-md-row p-0">
+    <div
+            class="navbar bg-transparent navbar-expand-md shadow d-md-flex flex-md-column"
+            id="navbar"
+    >
+        <a class="navbar-brand" href="#"
+        ><img alt="" id="logo" src="{{logo}}"
+        /></a>
+        <button
+                class="btn navbar-toggler"
+                data-bs-target="#nav"
+                data-bs-toggle="collapse"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+                class="collapse navbar-collapse d-md-flex flex-md-column"
+                id="nav"
+                style="width: 100%"
+        >
+            <nav class="d-md-flex flex-md-column navbar-nav" style="width: 100%">
+                <button
+                        class="buttons nav-item btn bg-transparent shadow m-3 "
+                        onclick="getSalesData(this)"
+                        type="button"
+                >
+                    Sales
+                </button>
+                <button
+                        class="buttons nav-item btn bg-transparent shadow m-3"
+                        onclick="getCatagoryData(this)"
+                        type="button"
+                >
+                    Catagory
+                </button>
+                <button
+                        class="buttons btn nav-item bg-transparent shadow m-3 active"
+                        id="cat"
+                        onclick="getProfileData(this)"
+                        type="button"
+                >
+                    Profile
+                </button>
+            </nav>
+        </div>
+    </div>
+    <div class="mt-4" id="dataArea"></div>
+</div>
+<div class="d-none" id="homeData"></div>
+<script src="{{js}}"></script>
+<script
+        crossorigin="anonymous"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+></script>
+
+<script
+        crossorigin="anonymous"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<link href="{{css}}" rel="stylesheet">
+<div class="container mt-3">
+	<div class="card-row">
+		<div class="card-col">
+			<section>
+				<div class="row my-3">
+					<div class="col-md-5" style="background-color: transparent">
+						<div class="carousel slide" data-bs-ride="carousel" id="carouselProduct">
+							<div class="carousel-inner">
+								<div class="carousel-item active" data-bs-interval="5000">
+									<img alt="{{ product.title }}" class="img img-fluid"
+											 src="{{ url_for('serve_image', filename=product.primaryimg) }}">
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<h5 class="mt-2">{{ product.title }}</h5>
+						<p class="product-description">{{ product.description }}</p>
+						<p><strong>₹{{ product.price }}</strong></p>
+					</div>
+				</div>
+			</section>
+			<section class="card mb-3">
+				<h4 class="card-header">DELIVERY ADDRESS</h4>
+				<div class="card-body">
+					<p id="address">{{address}}</p>
+				</div>
+			</section>
+			<section class="card mb-3">
+				<h4 class="card-header">PRICE DETAILS</h4>
+				<div class="card-body">
+					<ul class="list-unstyled mb-0">
+						<li class="price-item">
+							<div>Price</div>
+							<div>₹<span id="price">{{ product.price }}</span></div>
+						</li>
+						<li class="price-item">
+							<div>Quantity</div>
+							<div id="quantity">{{quantity}}</div>
+						</li>
+						<li class="price-item">
+							<div>Delivery Charges</div>
+							<div>₹<span id="delivery">50</span></div>
+						</li>
+						<li class="price-item">
+							<div>Packing Charges</div>
+							<div>₹<span id="packing">20</span></div>
+						</li>
+						<hr/>
+						<li class="price-item mb-0">
+							<h4>Total Amount</h4>
+							<h4>₹<span id="totalAmount">{{ product.price*quantity + 70 }}</span></h4>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="card payment-card">
+				<h4 class="card-header">PAYMENT OPTIONS</h4>
+				<div class="card-body accordion accordion-flush pay-options card-body" id="accordionFlushExample">
+					<div class="d-none" id="paymentWarning"></div>
+					<div class="accordion-item mb-2">
+						<div class="accordion-header">
+							<div aria-controls="cashPayment" aria-expanded="true" class="input-group"
+									 data-bs-target="#cashPayment"
+									 data-bs-toggle="collapse">
+								<div class="input-group-text header-item">
+									<input checked class="form-check-input" id="cashPay" name="payment" type="radio"/>
+								</div>
+								<label class="input-group-text header-item flex-grow-1" for="cashPay">Cash on
+									Delivery</label>
+							</div>
+						</div>
+						<div class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample"
+								 id="cashPayment">
+							<div class="accordion-body">
+								<form data-product-id="{{ product.pid }}" id="cashForm" method="post">
+									<button class="btn mx-2 pay-btn" data-product-id="{{ product.pid }}" type="submit">
+										Pay ₹{{product.price*quantity + 70}}
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item mb-2">
+						<div class="accordion-header">
+							<div aria-controls="upiPayment" aria-expanded="false" class="input-group d-flex collapsed"
+									 data-bs-target="#upiPayment" data-bs-toggle="collapse">
+								<div class="input-group-text header-item">
+									<input class="form-check-input" id="upiPay" name="payment" type="radio"/>
+								</div>
+								<label class="input-group-text header-item flex-grow-1" for="upiPay">UPI Payment</label>
+							</div>
+						</div>
+						<div class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample"
+								 id="upiPayment">
+							<form data-product-id="{{ product.pid }}" id="upiForm">
+								<div class="accordion-body input-group upi-field">
+									<div class="form-floating">
+										<input class="form-control input-field" id="upiID" name="upi-id" required
+													 type="text"/>
+										<label for="upiID">Enter UPI ID</label>
+									</div>
+									<button class="btn mx-2 pay-btn" data-product-id="{{ product.pid }}" type="submit">
+										Pay ₹<span id="payAmount">{{product.price*quantity + 70}}</span>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="accordion-item mb-2">
+						<div class="accordion-header">
+							<div aria-controls="creditPayment" aria-expanded="false"
+									 class="input-group d-flex collapsed"
+									 data-bs-target="#creditPayment" data-bs-toggle="collapse">
+								<div class="input-group-text header-item">
+									<input class="form-check-input" name="payment" type="radio"/>
+								</div>
+								<label class="input-group-text header-item flex-grow-1" for="creditPay">Credit/Debit
+									Card</label>
+							</div>
+						</div>
+						<div class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample"
+								 id="creditPayment">
+							<form data-product-id="{{ product.pid }}" id="creditForm">
+								<div class="accordion-body credit-field">
+									<div class="form-floating my-2">
+										<input class="form-control input-field" id="cardNo" name="cardNo"
+													 type="number"/>
+										<label for="cardNo">Enter Card Number</label>
+									</div>
+									<div class="input-row mb-3">
+										<div class="input-group validity-input">
+											<div class="input-group-text">Validity</div>
+											<select class="form-select input-field" id="expiryMonth" name="mm" required>
+												<option disabled hidden selected>MM</option>
+											</select>
+											<select class="form-select input-field" id="expiryYear" name="yy" required>
+												<option disabled hidden selected>YY</option>
+											</select>
+										</div>
+										<div class="form-floating">
+											<input autocomplete="cvv" class="form-control input-field" id="cvv"
+														 name="cvv"
+														 oninput="filterInput(this)" required type="password"/>
+											<label for="cvv">CVV</label>
+										</div>
+									</div>
+									<button class="btn mx-2 pay-btn" data-product-id="{{ product.pid }}" id="creditPay"
+													type="submit">
+										Pay ₹<span>{{product.price*quantity + 70}}</span>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

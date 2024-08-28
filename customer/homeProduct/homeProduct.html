@@ -1,0 +1,153 @@
+<style>
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+	.categories {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+
+	.category-btn {
+		background-color: #17a2b8;
+		color: #fff;
+		border: none;
+		padding: 8px 16px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	.category-btn:hover {
+		background-color: #138496;
+	}
+
+	.sub-categories {
+		display: flex;
+		flex-direction: column; /* Display subcategories vertically */
+		gap: 20px; /* Add gap between subcategories */
+	}
+
+	.category {
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 20px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.category h3 {
+		margin: 0;
+		font-size: 1rem;
+		color: #333;
+	}
+
+	.see-all-btn {
+		background-color: transparent;
+		border: 1px solid #17a2b8;
+		color: #17a2b8;
+		padding: 5px 10px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.3s, color 0.3s;
+	}
+
+	.see-all-btn:hover {
+		background-color: #17a2b8;
+		color: #fff;
+	}
+
+	.products {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 50px;
+		margin: 20px;
+	}
+
+	.card {
+		background-color: #fff;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+		transition: transform 0.3s ease;
+		cursor: pointer;
+		flex: 0 0 calc(33.33% - 20px);
+	}
+
+	.card:hover {
+		transform: translateY(-5px);
+	}
+
+	.card img {
+		max-width: 100%;
+		height: auto;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+
+	.card-body {
+		padding: 10px;
+	}
+
+	.card-title {
+		margin: 0;
+		font-size: 18px;
+		color: #333;
+	}
+
+	@media (max-width: 768px) {
+		.category {
+			width: 100%;
+		}
+
+		.card {
+			flex-basis: calc(50% - 20px); /* Adjust width for two cards per row on smaller screens */
+		}
+	}
+</style>
+
+
+<div class="container mx-5 my-3" id="dataArea">
+	<div class="d-flex flex-row gap-2 categories">
+		{% for category in categories %}
+		<button class="btn btn-outline-info category-btn" id="{{replace(category.categorytype,' ','')}}">
+			{{category.categorytype}}
+		</button>
+		{% endfor %}
+	</div>
+</div>
+<div class="mt-3 sub-categories" id="subCategories">
+	{% for category in categories %}
+	{% for subcategory in category.subcategories %}
+	<div class="category cards sub-cat mb-3 {{replace(category.categorytype,' ','')}}">
+		<div class="card-header d-flex justify-content-between">
+			<div>
+				<h3 class="fs-2">{{subcategory.categoryname}}</h3>
+			</div>
+			<button class="btn btn-sm btn-outline-info see-all-btn" data-sub-id="{{ subcategory.subcatid }}"
+							onclick="seeAll(this)">See All
+			</button>
+		</div>
+		<div class="products gap-2">
+			{% for product in subcategory.products[:3] %} {# Limiting to two products #}
+			<div class="card" data-product-id="{{ product.pid }}" onclick="productPage(this)">
+				<img
+					alt="..."
+					class=" img-fluid" src="{{ url_for('serve_image', filename=product.primaryimg) }}"
+					style="height: 250px;">
+				<div class="card-body">
+					<h5 class="card-title fs-5">{{ product.title }}</h5>
+					<p class="card-text fw-bold">&#x20B9;{{ product.price }}</p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
+	{% endfor %}
+</div>

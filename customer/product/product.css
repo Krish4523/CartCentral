@@ -1,0 +1,54 @@
+.product-description {
+    font-size: 0.875rem;
+    color: #343a40;
+}
+
+#carouselProduct {
+    max-height: 400px;
+}
+
+#carouselProduct img {
+    /*border: 1px solid #91c8e4;*/
+    /*border-radius: 5px;*/
+    height: 100%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+
+.buttons-p {
+    background-color: #71c9ce;
+    color: #343a40;
+    border: 1px solid #91c8e4;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.buttons-p:hover {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.specs-table th, .specs-table td {
+    border: 1px solid #91c8e4;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    color: #007bff;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: #0056b3;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.col-md-5 .active {
+    background: transparent !important;
+}

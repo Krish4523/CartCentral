@@ -1,0 +1,137 @@
+/*
+Color Palatte:
+
+Background: E3FDFD
+Border: 91C8E4
+BTN: 749BC2
+hover: 4682A9
+text: 71C9CE
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg_color: #e3fdfd;
+    --border_color: #91c8e4;
+    --btn_color: #0b335a;
+    --hover_color: #4682a9;
+    --text_color: #71c9ce;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg_color);
+}
+
+.main__container {
+    position: relative;
+    width: 70vw;
+    height: 80vh;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px 0 rgb(0, 0, 0, 0.3), 0 6px 20px 0 rgb(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.main__container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, rgb(107, 189, 226), rgb(127, 127, 218));
+    z-index: 6;
+    transform: translateX(100%);
+    transition: 1s ease-in-out;
+}
+
+.sign-in_up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 5;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    min-width: 238px;
+    padding: 0 10px;
+}
+
+.disabled {
+    background: transparent !important;
+    color: black !important;
+}
+
+.title {
+    font-size: 35px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    width: 100%;
+    height: 50px;
+    background: rgb(236, 230, 230);
+    margin: 10px;
+    border: 2px solid var(--border_color);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.input-field i {
+    flex: 1;
+    text-align: center;
+    color: darkgray;
+    font-size: 18px;
+}
+
+.input-field input {
+    flex: 5;
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(88, 84, 84);
+}
+
+.btn {
+    margin: 1rem 0;
+    width: 150px;
+    height: 50px;
+    /* border-radius: 50px; */
+    font-size: medium;
+    font-weight: 500;
+    border: none;
+    color: black;
+    /* background-color: var(--btn_color); */
+    background-color: transparent;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 10px 0 rgb(0, 0, 0, 0.3), 0 6px 20px 0 rgb(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--hover_color);
+    transition: all 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}

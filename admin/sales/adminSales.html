@@ -1,0 +1,46 @@
+<link href="{{css}}" rel="stylesheet"/>
+<div class="container-fluid">
+    <div class="accordion bg-transparent" id="categoryList">
+        {% for category in categories %}
+        <div class="accordion-item mt-2 bg-transparent">
+            <h2 class="accordion-header" id="{{replace(category.categorytype,' ','')}}">
+                <button
+                        class="accordion-button collapsed catButton"
+                        data-bs-target="#{{replace(category.categorytype,' ','')}}Sales"
+                        data-bs-toggle="collapse"
+                        id="{{category.catid}}"
+                        type="button"
+                        value="{{category.categorytype}}"
+                >
+                    {{category.categorytype}}
+                </button>
+            </h2>
+            <div
+                    class="accordion-collapse collapse bg-transparent"
+                    id="{{replace(category.categorytype,' ','')}}Sales"
+            >
+                <div class="accordion-body">
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                        <tr class="text-center">
+                            <th>Type</th>
+                            <th>Products Sold</th>
+                            <th>Total Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for sub in category.subcategories %}
+                        <tr class="text-center">
+                            <td>{{ sub.categoryname }}</td>
+                            <td>{{ subcatdata[sub.categoryname]["totalProducts"] }}</td>
+                            <td>{{ subcatdata[sub.categoryname]["totalPrice"] }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

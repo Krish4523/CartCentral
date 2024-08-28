@@ -1,0 +1,83 @@
+<style>
+    .buttons-p {
+        border: 1px solid #91c8e4;
+        color: #71c9ce;
+    }
+
+    .buttons-p:hover {
+        background: #91c8e4;
+        color: #FFFFFF;
+    }
+
+</style>
+<div class="container m-3" id="product">
+    <form action="/merchant/save-product" enctype="multipart/form-data" id="addProductForm" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="productTitle">Title</label>
+                    <input class="form-control" id="productTitle" name="productTitle" required type="text">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="productPrimaryImage">Primary Image URL</label>
+                    <input accept="image/*" class="form-control" id="productPrimaryImage" name="image" required
+                           type="file">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="productQuantity">Quantity</label>
+                    <input class="form-control" id="productQuantity" name="productQuantity" required type="number">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="productPrice">Price</label>
+                    <input class="form-control" id="productPrice" name="productPrice" required type="number">
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="productDescription">Description</label>
+            <textarea class="form-control" id="productDescription" name="productDescription" required
+                      rows="2"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="productCategory">Category</label>
+                    <select class="form-select" id="productCategory" name="productCategory"
+                            onchange="populateSubcategories()" required>
+                        <!-- Options for categories will be dynamically populated -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label" for="productSubcategory">Subcategory</label>
+                    <select class="form-select" id="productSubcategory" name="productSubcategory" required>
+                        <!-- Options for subcategories will be dynamically populated based on the selected category -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button class="buttons-p btn btn-secondary" onclick="addSpecField()" type="button">Add Spec</button>
+        </div>
+        <div id="specFields">
+        </div>
+        <div class="mb-3">
+            <button class="buttons-p btn btn-secondary" onclick="addImageField()" type="button">Add Image</button>
+        </div>
+        <div id="imageFields">
+            <!-- Dynamically added image fields will be here -->
+        </div>
+        <div class="mb-3">
+            <button class="buttons-p btn btn-primary" type="submit">Save Product</button>
+        </div>
+    </form>
+</div>

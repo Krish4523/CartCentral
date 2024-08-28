@@ -1,0 +1,73 @@
+<link href="{{css}}" rel="stylesheet" />
+<div class="d-flex justify-content-around">
+  <div style="width: 25%">
+    <button type="button" name="" id="applyButton" class="btn buttons">
+      Apply
+    </button>
+    <div class="accordion" id="filtersAccordion">
+      {% for category_id, category_data in specs.items() %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="{{ category_id }}">
+          <button aria-controls="{{ category_id }}Collapse" aria-expanded="true" value="{{ category_data['name'] }}"
+            class="accordion-button collapsed acc" data-bs-target="#{{ category_id }}Collapse" data-bs-toggle="collapse"
+            type="button">
+            {{ category_data['name'] }}
+          </button>
+        </h2>
+        <div aria-labelledby="{{ category_id }}" class="accordion-collapse collapse" id="{{ category_id }}Collapse">
+          <div class="accordion-body">
+            {% for value_data in category_data['values'] %}
+            <div class="form-check">
+              <input class="form-check-input {{ category_data['name'].replace(' ','') }}Selectors"
+                name="{{ value_data['id'] }}Checkbox" type="checkbox" value="{{ value_data['value'] }}" />
+              <label class="form-check-label" for="{{ value_data['id'] }}Checkbox">
+                {{ value_data['value'] }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div style="width: 70%" id="product-list">
+    {% if len(products) == 0 %}
+    <div class="alert alert-warning" role="alert">
+      No products found for the selected specifications.
+    </div>
+    {% else %} {% for product in products %}
+    <div class="card m-3 p-1" style="max-width: 768px">
+      <div class="row">
+        <div class="col-4 col-sm-3">
+          <img alt="..." class="img-fluid rounded-start m-1" data-product-id="{{ product.pid }}"
+            onclick="productPage(this)" src="https://picsum.photos/200" style="max-width: 100%; height: auto" />
+        </div>
+        <div class="col-8 col-sm-9">
+          <div class="card-body">
+            <div data-product-id="{{ product.pid }}" onclick="productPage(this)">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="product-description card-text" style="font-size: 0.75rem">
+                {{ product.description }}
+              </p>
+              <p class="card-text" style="font-size: 1.25rem">
+                <b>&#x20B9;{{ product.price }}</b>
+              </p>
+            </div>
+            <div class="card-text row">
+              <button class="col-5 buttons-p2 btn shadow m-1 m-sm-2" data-product-id="{{ product.pid }}"
+                onclick="addToCart(this)" style="font-size: 0.75rem; min-width: 5.5rem" type="button">
+                Add to Cart
+              </button>
+              <button class="col-5 buttons-p2 btn shadow m-1 m-sm-2" data-product-id="{{ product.pid }}"
+                onclick="buyNow(this)" style="font-size: 0.75rem; min-width: 5.5rem" type="button">
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+  </div>
+</div>

@@ -1,0 +1,84 @@
+:root {
+    --bg: #e3fdfd;
+    --border: #91c8e4;
+    --btn: #749bc2;
+    --hover: #4682a9;
+    --text: #71c9ce;
+}
+
+body {
+    background: var(--bg);
+}
+
+* {
+    font-size: clamp(0.8rem, 1rem, 1.2rem) !important;
+}
+
+.active {
+    background: var(--hover) !important;
+    color: var(--bg) !important;
+}
+
+.buttons:hover:not(.active) {
+    background: var(--border) !important;
+}
+
+#dataArea {
+    width: 85%;
+    height: 100%;
+    transition: width 500ms ease;
+}
+
+@media all and (max-width: 768px) {
+    #dataArea {
+        width: 100% !important;
+    }
+}
+
+@media all and (min-width: 768px) {
+    #navbar {
+        height: 100vh;
+        width: 15vw;
+    }
+}
+
+.mainCat {
+    color: var(--text);
+}
+
+
+#dataArea {
+    max-height: 95vh;
+    overflow: auto;
+}
+
+#dataArea::-webkit-scrollbar {
+    width: 10px;
+}
+
+#dataArea::-webkit-scrollbar-thumb {
+    background: var(--btn);
+    border-radius: 2%;
+}
+
+#dataArea::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.loader {
+    animation: fadeInOut 2s ease-in-out 1 forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

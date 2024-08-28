@@ -1,0 +1,106 @@
+:root {
+    --bg: #e3fdfd;
+    --border: #91c8e4;
+    --btn: #749bc2;
+    --hover: #4682a9;
+    --text: #71c9ce;
+}
+
+.input-field:focus {
+    color: #585454 !important;
+    border: 2px solid var(--border);
+    outline: none;
+    box-shadow: none !important;
+    background-color: rgba(116, 155, 194, 0.2);
+}
+
+.container {
+    max-width: 992px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.8rem 0.5rem;
+    font-size: 1.5rem;
+}
+
+.card-header {
+    background-color: var(--btn);
+    color: #ffff;
+}
+
+.input-group-text {
+    font-size: 1.3rem;
+}
+
+.accordion-item {
+    border: none;
+}
+
+.card-body,
+.accordion-item,
+.input-group {
+    background-color: rgba(227, 253, 253);
+}
+
+.header-item {
+    border: none !important;
+    background-color: rgba(227, 253, 253);
+}
+
+.pay-options {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    /* align-items: start; */
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.validity-input {
+    max-width: 16rem;
+}
+
+#cvv {
+    max-width: 5rem;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-content: start;
+    gap: 0.5rem;
+}
+
+@media (max-width: 450px) {
+    .input-row {
+        flex-direction: column;
+    }
+
+    .input-row > * {
+        min-width: 100%;
+    }
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.input-field,
+.input-group-text {
+    border-bottom: 2px solid var(--border);
+}
+
+.pay-btn {
+    background-color: var(--btn);
+    color: #ffff;
+    font-size: 1.2rem;
+}
+
+.pay-btn:hover {
+    background-color: var(--hover);
+    color: #ffff;
+}

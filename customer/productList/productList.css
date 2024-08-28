@@ -1,0 +1,94 @@
+@media (max-width: 576px) {
+    .product-description {
+        display: none;
+    }
+}
+
+:root {
+    --bg: #e3fdfd;
+    --border: #91c8e4;
+    --btn: #749bc2;
+    --hover: #4682a9;
+    --text: #71c9ce;
+}
+
+body {
+    background: var(--bg);
+}
+
+.buttons:hover {
+    background: var(--border);
+    color: #FFFFFF;
+}
+
+#applyButton{
+    background: var(--hover);
+    color: var(--bg);
+}
+
+#filtersAccordion {
+    margin-bottom: 20px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+}
+
+.accordion-button {
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.accordion-button:hover {
+    background-color: var(--hover);
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    border-bottom: 1px solid var(--border);
+}
+
+.accordion-body {
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-top: none;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
+
+.form-check-label {
+    color: var(--text);
+}
+
+.col-md-3 {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#filtersAccordion {
+    padding-top: 10px;
+}
+
+#product-list {
+    max-height: 95vh;
+    overflow: auto;
+}
+
+#product-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+#product-list::-webkit-scrollbar-thumb {
+    background: var(--btn);
+    border-radius: 2%;
+}
+
+#product-list::-webkit-scrollbar-corner {
+    background: transparent;
+}

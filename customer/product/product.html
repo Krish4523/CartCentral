@@ -1,0 +1,63 @@
+<link href="{{css}}" rel="stylesheet"/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5" style="background-color: transparent">
+            <div class="carousel slide" data-bs-ride="carousel" id="carouselProduct">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img alt="{{ product.title }}" class="d-block w-100"
+                             src="{{ url_for('serve_image', filename=product.primaryimg) }}">
+                    </div>
+                    {% for image in images %}
+                    <div class="carousel-item" data-bs-interval="2500">
+                        <img alt="{{ product.title }}" class="d-block w-100"
+                             src="{{ url_for('serve_image', filename=image.imgurl)  }}">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselProduct"
+                        type="button">
+                    <span aria-hidden="true" class="visually-hidden carousel-control-prev-icon"></span>
+                    <span style="transform: scale(2) ">&lt;</span>
+                </button>
+                <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselProduct"
+                        type="button">
+                    <span aria-hidden="true" class="visually-hidden carousel-control-next-icon"></span>
+                    <span style="transform: scale(2) ">&gt; </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h5 class="mt-2">{{ product.title }}</h5>
+            <p class="product-description">{{ product.description }}</p>
+            <p><b>{{ product.price }}</b></p>
+            <div class="row">
+                <button class="buttons-p btn shadow m-1 ml-3" data-product-id="{{ product.pid }}"
+                        onclick="addToCart(this)"
+                        type="button">
+                    Add to Cart
+                </button>
+                <button class="buttons-p btn shadow m-1" data-product-id="{{ product.pid }}" onclick="buyNow(this)"
+                        type="button">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="specs-table mt-5">
+        <h3>Specifications:</h3>
+        <table class="table">
+            <tbody>
+            {% for spec in product.specs %}
+            <tr>
+                <td><b>{{ spec.name }}</b></td>
+                <td>{{ spec.value }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="{{js}}"></script>

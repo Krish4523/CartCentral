@@ -1,0 +1,102 @@
+<link href="{{css}}" rel="stylesheet"/>
+<div class="container-fluid">
+    <div class="accordion bg-transparent" id="categoryList">
+        {% for category in categories %}
+        <div class="accordion-item mt-2 bg-transparent">
+            <h2 class="accordion-header" id="{{category.catid}}Header">
+                <button
+                        class="accordion-button collapsed catButton"
+                        data-bs-target="#subcategories{{category.catid}}"
+                        data-bs-toggle="collapse"
+                        id="{{category.catid}}"
+                        type="button"
+                        value="{{category.categorytype}}"
+                >
+                    {{category.categorytype}}
+                </button>
+            </h2>
+            <div
+                    class="accordion-collapse collapse bg-transparent"
+                    id="subcategories{{category.catid}}"
+            >
+                <div class="accordion-body">
+                    <div class="d-flex flex-column" id="{{category.catid}}subCatList">
+                        {% for sub in category.subcategories%}
+                        <div>
+                            <div
+                                    class="sub m-2 d-flex justify-content-between align-content-center"
+                            >
+                                <button
+                                        class="btn text-white m-2"
+                                        id="sub{{sub.subcatid}}"
+                                        value="{{sub.categoryname}}"
+                                >
+                                    {{sub.categoryname}}
+                                </button>
+                                <div class="d-flex justify-content-between m-2">
+                                    <button
+                                            class="btn bg-transparent"
+                                            onclick="editSubCat('{{sub.subcatid}}')"
+                                    >
+                                        <img
+                                                alt="edit"
+                                                class="imgButton"
+                                                src="{{url_for('static',filename = 'edit.svg')}}"
+                                        />
+                                    </button>
+                                    {% if len(sub.products) == 0 %}
+                                    <button
+                                            class="btn bg-transparent"
+                                            onclick="removeSubCat('{{sub.subcatid}}')"
+                                    >
+                                        <img
+                                                alt="remove"
+                                                class="imgButton"
+                                                src="{{url_for('static',filename = 'remove.svg')}}"
+                                        />
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div
+                                    class="d-flex justify-content-between align-content-center m-2"
+                            >
+                                <div class="text-center">
+                                    <span>{{len(sub.products)}}</span>
+                                    <span class="d-none d-md-block">Product(s)</span>
+                                </div>
+                                <div class="text-center">
+                  <span class="d-none d-md-block">Added : </span
+                  ><span>{{sub.addingdate}}</span>
+                                </div>
+                                <div class="text-center">
+                  <span class="d-none d-md-block">Last Updated : </span
+                  ><span>{{sub.lastupdated}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn ops m-2" onclick="add('{{category.catid}}')">
+                            Add
+                        </button>
+                        <button class="btn ops m-2" onclick="edit('{{category.catid}}')">
+                            Edit
+                        </button>
+
+                        {% if productsbycategory[category.catid] == 0 %}
+                        <button class="btn ops m-2" onclick="remove('{{category.catid}}')">
+                            Remove
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="btn m-2 btn-lg ops" onclick="addNew()" type="button">
+        Add new
+    </button>
+</div>
